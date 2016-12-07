@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+		var json={
+			a:0,
+			b:1
+		}
+		
+		//in方法  ==> 检查对象是否包含某个属性（包括自身属性和继承属性）
+		console.group('in方法');
+			console.log('a' in json);
+			//true  ==>自身含有a属性
+			console.log('c' in json);
+			//false  ==>未发现c属性
+			console.log('toString' in json);
+			//true  ==>继承自Object.prototype属性
+		console.groupEnd();
+		
+		//hasOwnProperty()方法  ==>  检查给定的属性是否是对象自有属性
+		console.group('hasOwnProperty()方法');
+			console.log(json.hasOwnProperty('a'));
+			//true  ==>自身含有a属性
+			console.log(json.hasOwnProperty('c'));
+			//false  ==>自身不含有c属性
+			console.log(json.hasOwnProperty('toString'));
+			//false  ==>自身不含有toString属性,toString继承自Object.prototype
+			console.log(Object.prototype.hasOwnProperty('toString'));
+			//true  ==>Object.prototype含有toString属性
+		console.groupEnd();
+		
+		//propertyIsEnumerable()方法  ==>  检查给定的属性是否是对象自有属性并且是可枚举的
+		console.group('propertyIsEnumerable()方法');
+			console.log(json.propertyIsEnumerable('a'));
+			//true  ==>自身含有a属性
+			console.log(json.propertyIsEnumerable('c'));
+			//false  ==>自身不含有c属性
+			console.log(json.propertyIsEnumerable('toString'));
+			//false  ==>自身不含有toString属性,toString继承自Object.prototype
+			console.log(Object.prototype.propertyIsEnumerable('toString'));
+			//false  ==>Object.prototype含有toString属性,但是不可枚举的
+		console.groupEnd();
+		
+	</script>
+</head>
+<body>
+</body>
+</html>
