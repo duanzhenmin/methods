@@ -11,9 +11,15 @@
 	<meta name="author" content="段振民,zhenminduan@163.com">
 	<title>属性检测</title>
 	<script type="text/javascript">
+		"use strict"
 		var json={
-			a:0,
-			b:1
+			$n:0,
+			a:1,
+			get b(){
+				return this.$n;
+			},set b(val){
+				this.$n=val;
+			}
 		}
 		
 		//in方法  ==> 检查对象是否包含某个属性（包括自身属性和继承属性）
@@ -48,6 +54,27 @@
 			//false  ==>自身不含有toString属性,toString继承自Object.prototype
 			console.log(Object.prototype.propertyIsEnumerable('toString'));
 			//false  ==>Object.prototype含有toString属性,但是不可枚举的
+		console.groupEnd();
+		
+		//Object.getOwnPropertyDescriptor()方法 ==> 获取对象属性的属性描述符
+		console.group('Object.getOwnPropertyDescriptor()方法');
+			console.log(Object.getOwnPropertyDescriptor(json,'a'));
+			//{value: 0, writable: true, enumerable: true, configurable: true}
+			console.log(Object.getOwnPropertyDescriptor(json,'b'));
+			//{configurable: true, enumerable: true, get: b(), set: b(val)}
+			console.log(Object.getOwnPropertyDescriptor(json,'toString'));
+			//undefined  ==>自身不含有toString属性,toString继承自Object.prototype
+			//如需获取原型链上的继承属性，需要使用Object.getPropertyOf()方法
+		console.groupEnd();
+		
+		//Object.defineProperty()方法 ==> 设置对象的属性描述，或使对象的新增属性拥有特定描述
+		Object.defineProperty(json,'c',{value:2,
+										writable: false,
+										enumerable: true,
+										onfigurable: false});
+		console.group('Object.defineProperty()方法');
+			console.log(Object.getOwnPropertyDescriptor(json,'c'));
+			//{value: 2, writable: false, enumerable: true, configurable: false}
 		console.groupEnd();
 		
 	</script>
