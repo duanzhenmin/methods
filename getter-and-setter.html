@@ -35,6 +35,7 @@
 			o.$n1=2;
 			//Object.defineProperty()方法 ==> 设置对象的属性描述，或使对象的新增属性拥有特定描述（只能设置一个属性）
 			Object.defineProperty(o,'b',{
+				//设置get或set的时候不能设置value
 				get:function(){
 					console.log("读取了b");
 					return this.$n1;
