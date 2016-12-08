@@ -68,10 +68,12 @@
 		console.groupEnd();
 		
 		//Object.defineProperty()方法 ==> 设置对象的属性描述，或使对象的新增属性拥有特定描述
-		Object.defineProperty(json,'c',{value:2,
-										writable: false,
-										enumerable: true,
-										onfigurable: false});
+		Object.defineProperty(json,'c',{
+			value:2,
+			writable: false,
+			enumerable: true,
+			onfigurable: false
+		});
 		console.group('Object.defineProperty()方法');
 			console.log(Object.getOwnPropertyDescriptor(json,'c'));
 			//{value: 2, writable: false, enumerable: true, configurable: false}

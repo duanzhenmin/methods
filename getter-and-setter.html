@@ -1,0 +1,103 @@
+<!doctype html>
+<html data-user-width="750">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="format-detection" content="email=no" />
+	<meta name="author" content="段振民,zhenminduan@163.com">
+	<title>getter and setter</title>
+	<script type="text/javascript">
+		"use strict"
+		var o={
+			$n:0,
+			get a(){
+				console.log("读取了a");
+				return this.$n;
+			},set a(val){
+				console.log("修改了a");
+				this.$n=val;
+			}
+		};
+		
+		//访问原有属性
+		console.group("添加新属性")
+			console.log('o.a='+o.a);// o.a=0
+			o.a=1;
+			console.log('o.a='+o.a);// o.a=1
+		console.groupEnd();
+		
+		//添加新属性，并使其具有getter和setter方法
+		console.group("添加一个新属性");
+			o.$n1=2;
+			//Object.defineProperty()方法 ==> 设置对象的属性描述，或使对象的新增属性拥有特定描述（只能设置一个属性）
+			Object.defineProperty(o,'b',{
+				get:function(){
+					console.log("读取了b");
+					return this.$n1;
+				},
+				set:function(val){
+					console.log("修改了b");
+					this.$n1=val;
+				},
+				configurable: true,
+				enumerable: true
+			});
+			console.log('o.b='+o.b);// o.b=2
+			o.b=3;
+			console.log('o.b='+o.b);// o.b=3
+		console.groupEnd();
+		
+		console.group("添加多个新属性");
+			o.$n2=5;
+			//Object.defineProperties()方法 ==> 设置对象的属性描述，或使对象的新增属性拥有特定描述（可同时设置多个属性）
+			Object.defineProperties(o,{
+				c:{
+					value:4,
+					writable: false,
+					enumerable: true,
+					onfigurable: false
+				},
+				d:{
+					get:function(){
+						console.log("读取了d");
+						return this.$n2;
+					},
+					set:function(val){
+						console.log("修改了d");
+						this.$n2=val;
+					},
+					configurable: true,
+					enumerable: true
+				}
+			});
+			console.log('o.c='+o.c);// o.c=4
+			console.log('o.d='+o.d);// o.d=5
+			o.d=6;
+			console.log('o.d='+o.d);// o.d=6
+		console.groupEnd();
+		
+	</script>
+</head>
+<body>
+	
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
