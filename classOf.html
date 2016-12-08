@@ -1,0 +1,43 @@
+<!doctype html>
+<html data-user-width="750">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="author" content="段振民,zhenminduan@163.com">
+		<title>classOf</title>
+		<script type="text/javascript">
+			"use strict"
+
+			function classOf(o) {
+				if(o === null) return "Null";
+				if(o === undefined) return "Undefined";
+				return Object.prototype.toString.call(o).slice(8, -1);
+			}
+			
+			console.group("classOf()方法")
+				console.log(classOf(null)); //Null
+				console.log(classOf(undefined)); //Undefined
+				console.log(classOf(window)); //Window
+				console.log(classOf(1)); //Number
+				console.log(classOf("a")); //String
+				console.log(classOf(false)); //Boolean
+				console.log(classOf([])); //Array
+				console.log(classOf({})); //Object
+				console.log(classOf(/./)); //RegExp
+				console.log(classOf(new Date())); //Date
+				console.log(classOf(function() {})); //Function
+			console.groupEnd();
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+
+</html>
